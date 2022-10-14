@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6DFEDB21-29D5-4334-AA4C-F749FCD1D692}</ProjectGuid>
+    <ProjectGuid>{659D72A2-5042-4A7D-82D1-EE8133BD2459}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>TouKyuu_Block.ModuleMain</StartupObject>
-    <RootNamespace>TouKyuu_Block</RootNamespace>
-    <AssemblyName>TouKyuu Block</AssemblyName>
+    <StartupObject>Toukyuu_Block.ModuleMain</StartupObject>
+    <RootNamespace>Toukyuu_Block</RootNamespace>
+    <AssemblyName>Toukyuu Block</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
@@ -37,7 +37,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>TouKyuu Block.xml</DocumentationFile>
+    <DocumentationFile>Toukyuu Block.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -47,7 +47,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>TouKyuu Block.xml</DocumentationFile>
+    <DocumentationFile>Toukyuu Block.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -153,5 +153,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

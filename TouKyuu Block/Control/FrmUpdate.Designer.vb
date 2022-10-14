@@ -93,7 +93,7 @@ Partial Class FrmUpdate
         '
         Me.picUpdating.BackColor = System.Drawing.Color.Transparent
         Me.picUpdating.Dock = System.Windows.Forms.DockStyle.Top
-        Me.picUpdating.Image = Global.TouKyuu_Block.My.Resources.Resources.gUpdating
+        Me.picUpdating.Image = Global.Toukyuu_Block.My.Resources.Resources.gUpdating
         Me.picUpdating.Location = New System.Drawing.Point(0, 20)
         Me.picUpdating.Margin = New System.Windows.Forms.Padding(0)
         Me.picUpdating.Name = "picUpdating"

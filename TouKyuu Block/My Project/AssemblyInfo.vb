@@ -9,17 +9,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("TouKyuu Block")>
+<Assembly: AssemblyTitle("Toukyuu Block")>
 <Assembly: AssemblyDescription("東急ブロック")>
 <Assembly: AssemblyCompany("YAN")>
-<Assembly: AssemblyProduct("TouKyuu Block")>
+<Assembly: AssemblyProduct("Toukyuu Block")>
 <Assembly: AssemblyCopyright("Copyright © Yami An")>
 <Assembly: AssemblyTrademark("Nephilim")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("6ffa821d-f61f-4777-bba7-f34f7c03d351")>
+<Assembly: Guid("07446c5d-20a8-4749-8068-6a0d8833ebf9")>
 
 ' Version information for an assembly consists of the following four values:
 '

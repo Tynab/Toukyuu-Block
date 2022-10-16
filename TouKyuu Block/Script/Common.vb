@@ -93,73 +93,69 @@ Friend Module Common
     ''' Run application.
     ''' </summary>
     Private Sub RunApp()
-        ' w
-        Dim w = 0D
-        Dim sW = "W = "
-        For i = 0 To Integer.MaxValue
-            Intro()
-            If i > 0 Then
-                HxSty(sW & vbCrLf)
-                Dim wi = InpG(vbCrLf & vbTab & $"w{i + 1} = ")
-                If wi > 0 Then
-                    w += wi
-                    sW += $" + {wi}"
-                Else
-                    Exit For
-                End If
-            Else
-                Dim wi = InpG(vbTab & $"w{i + 1} = ")
-                If wi > 0 Then
-                    w += wi
-                    sW += wi.ToString()
-                Else
-                    i = -1
-                End If
-            End If
-        Next
-        ' h
-        Dim h = 0D
-        Dim sH = "H = "
-        For i = 0 To Integer.MaxValue
-            Intro()
-            HxSty(sW & vbCrLf)
-            If i > 0 Then
-                WriteLine(sH)
-                Dim hi = InpG(vbCrLf & vbTab & $"h{i + 1} = ")
-                If hi > 0 Then
-                    h += hi
-                    sH += $" + {hi}"
-                Else
-                    Exit For
-                End If
-            Else
-                Dim hi = InpG(vbCrLf & vbTab & $"h{i + 1} = ")
-                If hi > 0 Then
-                    h += hi
-                    sH += hi.ToString()
-                Else
-                    i = -1
-                End If
-            End If
-        Next
-        ' Process
-        Dim c = Ceiling((w + h) * 2 / Pow(10, 3))
-        Dim s = Ceiling(w * h / Pow(10, 6))
-        Dim block = c + s
-        For i = 10 To Integer.MaxValue
-            If (block + i) Mod 30 = 0 Then
-                block += i
-                Exit For
-            End If
-        Next
-        ' Output
-        Dim fmt = FmtNo(w, h, c, s, block)
         Intro()
-        HxSty(vbTab & "Ｗ (mm)" & vbTab & vbTab & ": " + String.Format(fmt, w) & vbCrLf)
-        HxSty(vbTab & "Ｈ (mm)" & vbTab & vbTab & ": " + String.Format(fmt, h) & vbCrLf)
-        RsltSty(vbTab & "Ｃ (m)" & vbTab & vbTab & ": " + String.Format(fmt, c) & vbCrLf)
-        RsltSty(vbTab & "Ｓ (m²)" & vbTab & vbTab & ": " + String.Format(fmt, s) & vbCrLf)
-        RsltSty(vbTab & "ブロック (個)" & vbTab & ": " + String.Format(fmt, block) & vbCrLf)
+        Dim n = InpD(vbTab & "面積の数量: ")
+        Dim area(n) As Area
+        Dim sHx = ""
+        For i = 0 To n - 1
+            area(i) = New Area
+            ' Input ws
+            sHx = Logger(area, i)
+            area(i).W = InpG("w = ")
+            If Not area(i).W > 0 Then
+                If i > 0 Then
+                    area(i - 1).H = 0
+                    i -= 1
+                Else
+                    i -= 1
+                    Continue For
+                End If
+            End If
+            ' Input hs
+            sHx = Logger(area, i)
+            area(i).H = InpG(vbTab & "h = ")
+            If Not area(i).H > 0 Then
+                area(i).H = 0
+                i -= 1
+                Continue For
+            End If
+            sHx += vbTab & $"h = {area(i).H}" & vbCrLf
+        Next
+Parent:
+        Dim sigArea = New Area
+        Dim sHxSub = sHx & vbCrLf & "Σ) "
+        ' Input W
+        Intro()
+        HxSty(sHxSub)
+        sigArea.W = InpG("W = ")
+        If Not sigArea.W > 0 Then
+            GoTo Parent
+        End If
+        sHxSub += $"W = {sigArea.W}"
+        ' Input H
+        Intro()
+        HxSty(sHxSub)
+        sigArea.H = InpG(vbTab & "H = ")
+        If Not sigArea.H > 0 Then
+            GoTo Parent
+        End If
+        'sHxSub += vbTab & $"H = {sigArea.H}" & vbCrLf
+        ' Process
+        Dim sigP = sigArea.PArea()
+        Dim sigS = 0D
+        For i = 0 To n - 1
+            sigS += area(i).SArea()
+        Next
+        Dim box = Ceiling((sigP + sigS) / 30) + 1
+        ' Output
+        Dim fmt = FmtNo(sigArea.W, sigArea.H, sigP, sigS, box)
+        Intro()
+        HxSty(vbTab & "Ｗ (mm)" & vbTab & vbTab & ": " + String.Format(fmt, sigArea.W) & vbCrLf)
+        HxSty(vbTab & "Ｈ (mm)" & vbTab & vbTab & ": " + String.Format(fmt, sigArea.H) & vbCrLf)
+        RsltSty(vbTab & "Ｐ (m)" & vbTab & vbTab & ": " + String.Format(fmt, sigP) & vbCrLf)
+        RsltSty(vbTab & "Ｓ (m²)" & vbTab & vbTab & ": " + String.Format(fmt, sigS) & vbCrLf)
+        RsltSty(vbTab & "ブロック (箱)" & vbTab & ": " + String.Format(fmt, box) & vbCrLf)
+        RsltSty(vbTab & "ブロック (個)" & vbTab & ": " + String.Format(fmt, box * 30) & vbCrLf)
         Credit()
     End Sub
 
@@ -219,6 +215,31 @@ Friend Module Common
         Dim blockSize = block.ToString().Length
         Dim maxSize = Max(Max(Max(wSize, hSize), Max(cSize, sSize)), blockSize)
         Return "{0," + maxSize.ToString() + ":####.#}"
+    End Function
+
+    ''' <summary>
+    ''' Write log.
+    ''' </summary>
+    ''' <param name="length">Length of array.</param>
+    ''' <returns>Log.</returns>
+    Private Function Logger(arrArea As Area(), length As Integer)
+        Intro()
+        Dim sHx = ""
+        For j = 0 To length
+            sHx += $"{j + 1}) "
+            If arrArea(j).W > 0 Then
+                sHx += $"w = {arrArea(j).W}"
+            Else
+                Exit For
+            End If
+            If arrArea(j).H > 0 Then
+                sHx += vbTab & $"h = {arrArea(j).H}" & vbCrLf
+            Else
+                Exit For
+            End If
+        Next
+        HxSty(sHx)
+        Return sHx
     End Function
 #End Region
 
@@ -346,6 +367,16 @@ Friend Module Common
             RunApp()
         End If
     End Sub
+
+    ''' <summary>
+    ''' Input double.
+    ''' </summary>
+    ''' <param name="caption">Caption.</param>
+    ''' <returns>Input value.</returns>
+    Private Function InpD(caption As String)
+        PrefInp(caption)
+        Return Val(ReadLine)
+    End Function
 
     ''' <summary>
     ''' Input G.

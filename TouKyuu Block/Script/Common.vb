@@ -94,36 +94,38 @@ Friend Module Common
     ''' </summary>
     Private Sub RunApp()
         Intro()
+        Dim sHx = ""
         Dim n = InpD(vbTab & "面積の数量: ")
         Dim area(n) As Area
-        Dim sHx = ""
-        For i = 0 To n - 1
-            area(i) = New Area
-            ' Input ws
-            sHx = Logger(area, i)
-            area(i).W = InpG("w = ")
-            If Not area(i).W > 0 Then
-                If i > 0 Then
-                    area(i - 1).H = 0
-                    i -= 1
-                Else
+        If n > 1 Then
+            For i = 0 To n - 1
+                area(i) = New Area
+                ' Input ws
+                sHx = Logger(area, i)
+                area(i).W = InpG("w = ")
+                If Not area(i).W > 0 Then
+                    If i > 0 Then
+                        area(i - 1).H = 0
+                        i -= 1
+                    Else
+                        i -= 1
+                        Continue For
+                    End If
+                End If
+                ' Input hs
+                sHx = Logger(area, i)
+                area(i).H = InpG(vbTab & "h = ")
+                If Not area(i).H > 0 Then
+                    area(i).H = 0
                     i -= 1
                     Continue For
                 End If
-            End If
-            ' Input hs
-            sHx = Logger(area, i)
-            area(i).H = InpG(vbTab & "h = ")
-            If Not area(i).H > 0 Then
-                area(i).H = 0
-                i -= 1
-                Continue For
-            End If
-            sHx += vbTab & $"h = {area(i).H}" & vbCrLf
-        Next
+                sHx += vbTab & $"h = {area(i).H}" & vbCrLf & vbCrLf
+            Next
+        End If
 Parent:
         Dim sigArea = New Area
-        Dim sHxSub = sHx & vbCrLf & "Σ) "
+        Dim sHxSub = sHx & "Σ) "
         ' Input W
         Intro()
         HxSty(sHxSub)
@@ -141,6 +143,12 @@ Parent:
         End If
         'sHxSub += vbTab & $"H = {sigArea.H}" & vbCrLf
         ' Process
+        If Not n > 1 Then
+            area(n - 1) = New Area With {
+                .W = sigArea.W,
+                .H = sigArea.H
+            }
+        End If
         Dim sigP = sigArea.PArea()
         Dim sigS = 0D
         For i = 0 To n - 1

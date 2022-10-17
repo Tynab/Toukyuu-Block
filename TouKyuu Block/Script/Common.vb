@@ -156,7 +156,7 @@ Parent:
         Next
         Dim box = Ceiling((sigP + sigS) / 30) + 1
         ' Output
-        Dim fmt = FmtNo(sigArea.W, sigArea.H, sigP, sigS, box)
+        Dim fmt = FmtNo(sigArea.W, sigArea.H)
         Intro()
         HxSty(vbTab & "Ｗ (mm)" & vbTab & vbTab & ": " + String.Format(fmt, sigArea.W) & vbCrLf)
         HxSty(vbTab & "Ｈ (mm)" & vbTab & vbTab & ": " + String.Format(fmt, sigArea.H) & vbCrLf)
@@ -211,17 +211,11 @@ Parent:
     ''' </summary>
     ''' <param name="w">Width.</param>
     ''' <param name="h">Heigh.</param>
-    ''' <param name="c">Circuit.</param>
-    ''' <param name="s">Spread.</param>
-    ''' <param name="block">Block.</param>
     ''' <returns>Format.</returns>
-    Private Function FmtNo(w As Double, h As Double, c As Double, s As Double, block As Double)
+    Private Function FmtNo(w As Double, h As Double)
         Dim wSize = w.ToString().Length
         Dim hSize = h.ToString().Length
-        Dim cSize = c.ToString().Length
-        Dim sSize = s.ToString().Length
-        Dim blockSize = block.ToString().Length
-        Dim maxSize = Max(Max(Max(wSize, hSize), Max(cSize, sSize)), blockSize)
+        Dim maxSize = Max(wSize, hSize)
         Return "{0," + maxSize.ToString() + ":####.#}"
     End Function
 

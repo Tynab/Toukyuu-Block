@@ -98,6 +98,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -367,15 +375,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:東急ブロック"
-        "ProductCode" = "8:{905E90C4-F4A0-4C9A-AB65-74C74F2437EE}"
-        "PackageCode" = "8:{8014365C-25B5-479D-B807-BF272032B68A}"
+        "ProductCode" = "8:{F9CC6654-E9D4-4198-832F-294C720C4084}"
+        "PackageCode" = "8:{DE3C389E-29A0-4A45-8663-490A2922CDB7}"
         "UpgradeCode" = "8:{9EFD680F-A5D5-414C-BE06-15949436675E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:22.10.16"
+        "ProductVersion" = "8:22.10.17"
         "Manufacturer" = "8:YAN"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -927,7 +935,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3B4D8D2457C04305B4D616285130C7DC"
             {
-            "SourcePath" = "8:..\\Toukyuu Block\\obj\\Release\\Toukyuu Block.exe"
+            "SourcePath" = "8:..\\Toukyuu Block\\obj\\Debug\\Toukyuu Block.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_05D968CFAE284E0E9CAF0DF0DEF245E6"

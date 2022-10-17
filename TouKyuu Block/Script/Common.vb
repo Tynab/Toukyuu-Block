@@ -268,7 +268,7 @@ Parent:
     <Extension()>
     Friend Sub StopAdv(tmr As Timer)
         If tmr.Enabled Then
-            tmr.Start()
+            tmr.Stop()
         End If
     End Sub
 #End Region

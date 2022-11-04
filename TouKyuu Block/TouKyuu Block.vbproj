@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{659D72A2-5042-4A7D-82D1-EE8133BD2459}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>Toukyuu_Block.ModuleMain</StartupObject>
+    <StartupObject>Toukyuu_Block.Main</StartupObject>
     <RootNamespace>Toukyuu_Block</RootNamespace>
     <AssemblyName>Toukyuu Block</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -96,7 +96,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Script\Model\Area.vb" />
-    <Compile Include="ModuleMain.vb" />
+    <Compile Include="Script\Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

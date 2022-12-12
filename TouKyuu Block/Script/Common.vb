@@ -44,7 +44,7 @@ Friend Module Common
     End Sub
 
     ''' <summary>
-    ''' Update valid license
+    ''' Update valid license.
     ''' </summary>
     Friend Sub UpdVldLic()
         My.Settings.Chk_Key = True
@@ -52,7 +52,7 @@ Friend Module Common
     End Sub
 
     ''' <summary>
-    ''' Fade in form
+    ''' Fade in form.
     ''' </summary>
     <Extension()>
     Friend Sub FIFrm(frm As Form)
@@ -64,7 +64,7 @@ Friend Module Common
     End Sub
 
     ''' <summary>
-    ''' Fade out form
+    ''' Fade out form.
     ''' </summary>
     <Extension()>
     Friend Sub FOFrm(frm As Form)
